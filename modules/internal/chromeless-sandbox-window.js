@@ -80,7 +80,7 @@ var checkWindows = function(subject, url) {
   subject.document.addEventListener("DOMNodeInserted", function( a ){ removeTarget( a.target ); }, false);
   subject.document.addEventListener("DOMAttrModified", function( a ){ removeTarget( a.target ); }, false);
   subject.document.addEventListener("DOMContentLoaded", function topAs() {
-      var as = subject.document.querySelectorAll("a[target=\"_top\"]"),
+      var as = subject.document.querySelectorAll("a[target]"),
           i = 0,
           l = as.length;
       for(;i<l;) {
