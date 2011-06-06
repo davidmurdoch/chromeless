@@ -188,7 +188,7 @@ exports.main = function main(options, testCallbacks) {
             exit: function() {
                 console.log("window.exit() called...");
                 if (appWindow) {
-                    appWindow.close();
+                    appWindow.close()
                 }
             }
         }
@@ -199,6 +199,5 @@ exports.onUnload = function (reason) {
     console.log("shutting down.");
     if (appWindow){
         appWindow.close();
-        appWindow = null; // this is for tests framework to test the window exists or not
     }
 };
