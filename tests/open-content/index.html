@@ -1,0 +1,48 @@
+<!doctype html>
+<title>Open Content Test</title>
+<div id="frames">
+    <iframe id="testFrame" src="target.html" style="width:500px; height:500px; border:solid 2px #000;" />
+</div>
+<script>
+    const webContent = require( "web-content" );
+    function bindFrame( frame )
+        var pm = webContent.ProgressMonitor();
+        pm.attach( frame );
+        pm.on("open-content", function( event ){
+            // I'm not sure how what to name the event's properties.
+            // For normal DOM events "target" would be the target of the action, 
+            // like the element that was clicked or mouseovered.
+            // In this case it would be an anchor element (or even an element 
+            // nested within that anchor, yikes!). But thats not very intuitive 
+            // here since we are after the "target" attribute of the anchor.
+            var callingFrame = event.window, // the iframe
+                node = event.target, // the node that was clicked. Hopefully an anchor.
+                href = node.href,
+                target= element.getAttribute( "target" );
+            switch ( target ) {
+                // case "_top" : break; // _top will not dispatch the open-content event.
+                case "_blank":
+                    newTab( href, target );
+                    break;
+                default:
+                    // TODO: target named windows here:
+                    
+                    
+                    // if no target or the target doesn't exit, open it in a new iframe
+                    newTab( href, target );
+                    break;
+            }   
+        });
+        function newTab( href, name ){
+            var iframe = document.createElement( "iframe" );
+                bindFrame( iframe );
+                if( name ){
+                    iframe.name = name;
+                }
+                iframe.src = href;
+                // insert the new tab after the one that opened it
+                frames.parentNode.insertAfter( frame, iframe );
+        }
+    };
+    bindFrame( document.getElementById("testFrame") );
+</script>
