@@ -6,3 +6,6 @@
 _test_tmp
 /build
 /browser
+/obj
+*.user
+*.csproj
